@@ -7,6 +7,8 @@ from launch_ros.actions import Node
 
 # Launch description specifically for the NTRIP base station on the rooftop
 def generate_launch_description():
+    # create new launch description
+    ld = LaunchDescription()
   
     # Node for the NTRIP client
     ntrip_client_node = IncludeLaunchDescription(
