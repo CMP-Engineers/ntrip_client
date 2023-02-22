@@ -14,7 +14,7 @@ def generate_launch_description():
     ntrip_client_node = IncludeLaunchDescription(
       PythonLaunchDescriptionSource([
         PathJoinSubstitution([
-          FindPackageShare('ntrip_client'), 'ntrip_client_launch.py'
+          FindPackageShare('ntrip_client'), 'launch', 'ntrip_client_launch.py'
         ])
       ]),
       launch_arguments={
