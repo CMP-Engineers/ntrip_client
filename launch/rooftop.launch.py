@@ -18,6 +18,7 @@ def generate_launch_description():
         ])
       ]),
       launch_arguments={
+        'rtcm_message_package': "rtcm_msgs",
         'host': "caster.emlid.com",
         'port': "2101",
         'mountpoint': "MP9395",
