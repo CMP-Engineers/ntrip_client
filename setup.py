@@ -1,5 +1,5 @@
 import os
-import glob
+from glob import glob
 from setuptools import setup
 
 package_name = 'ntrip_client'
@@ -10,8 +10,12 @@ setup(
     packages=[package_name],
     package_dir={'': 'src'},
     data_files=[
+        # Install the package.xml file
+        ('share/' + package_name, ['package.xml']),
+        # Install marker file in the package index
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
-        (os.path.join('share', package_name), ['package.xml', *glob.glob('launch/*')]),
+        # Install launch files.
+        (os.path.join('share', package_name, 'launch'), glob('launch/*launch.py')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
