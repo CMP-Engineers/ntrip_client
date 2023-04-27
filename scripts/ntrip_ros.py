@@ -7,6 +7,7 @@ import importlib.util
 
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import ExternalShutdownException
 from std_msgs.msg import Header
 from nmea_msgs.msg import Sentence
 
@@ -201,12 +202,10 @@ if __name__ == '__main__':
   try:
     # Spin until we are shut down
     rclpy.spin(node)
-  except KeyboardInterrupt:
+  except (KeyboardInterrupt, ExternalShutdownException):
     pass
-  except BaseException as e:
-    raise e
   finally:
     node.stop()
-    
     # Shutdown the node and stop rclpy
-    rclpy.shutdown()
+    # changed signal handling per https://github.com/ros2/demos/pull/581
+    rclpy.try_shutdown()
